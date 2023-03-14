@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components";
+import { darken } from "polished";
 
 export const GlobalStyle = createGlobalStyle`
     :root {
@@ -52,9 +53,8 @@ export const GlobalStyle = createGlobalStyle`
         opacity: 0.6;
         cursor: not-allowed;
     }
-
     .react-modal-overlay {
-        background-color: rgba(0, 0, 0.5);
+        background-color: rgba(0, 0, 0.5, 0.5);
         position: fixed;
         top: 0;
         bottom: 0;
