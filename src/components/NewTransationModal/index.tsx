@@ -18,7 +18,7 @@ export function NewTransactionModal({
 	onRequestClose,
 }: NewTransactionModalOpenProps) {
 	const transactions = useContext(TransactionsContext)
-	
+
 	const [title, setTitle] = useState("");
 	const [value, setValue] = useState("");
 	const [category, setCategory] = useState("");
@@ -27,14 +27,7 @@ export function NewTransactionModal({
 	function handleCreateNewTransctionModal(event: FormEvent) {
 		event.preventDefault();
 
-		const data = {
-			title,
-			value,
-			category,
-			type,
-		};
-
-		api.post("/transactions", data);
+		
 	}
 
 	return (
