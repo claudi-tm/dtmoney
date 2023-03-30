@@ -2,9 +2,12 @@ import { Container } from "./styles";
 import income_img from "../../assets/income.svg";
 import total_img from "../../assets/total.svg";
 import outcome_img from "../../assets/outcome.svg";
+import { TransactionsContext } from "../../TransactionsContext";
+import { useContext } from "react";
 
 export function Summary() {
-	// TODO document why this function 'Summary' is empty
+	
+
 	return (
 		<Container>
 			<div>
