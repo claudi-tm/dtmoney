@@ -5,6 +5,7 @@ import closeImg from "../../assets/close.svg";
 import income_img from "../../assets/income.svg";
 import outcome_img from "../../assets/outcome.svg";
 import { FormEvent, useState } from "react";
+import { api } from "../../services/api";
 
 interface NewTransactionModalOpenProps {
 	isOpen: boolean;
@@ -16,16 +17,21 @@ export function NewTransactionModal({
 	onRequestClose,
 }: NewTransactionModalOpenProps) {
 	const [title, setTitle] = useState("");
-	const [value, setValue] = useState(0);
+	const [value, setValue] = useState("");
 	const [category, setCategory] = useState("");
 	const [type, setType] = useState("deposit");
 
 	function handleCreateNewTransctionModal(event: FormEvent) {
 		event.preventDefault();
-		console.log({
-			title, value, category, type
-		});
-		
+
+		const data = {
+			title,
+			value,
+			category,
+			type,
+		};
+
+		api.post("/transactions", data);
 	}
 
 	return (
@@ -54,7 +60,8 @@ export function NewTransactionModal({
 					type="number"
 					placeholder="Valor"
 					value={value}
-					onChange={(event) => setValue(Number(event.target.value))}
+					// onChange={(event) => setValue(Number(event.target.value))}
+					onChange={(event) => setValue(event.target.value)}
 				/>
 
 				<TransactionTypeContainer>
