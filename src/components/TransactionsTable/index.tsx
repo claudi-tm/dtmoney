@@ -13,7 +13,7 @@ interface Transaction {
 }
 
 export function TransactionsTable() {
-	const [transactions, setTransactios] = useState([]);
+	const [transactions, setTransactios] = useState<Transaction[]>([]);
 
 	useEffect(() => {
 		api.get("transactions").then((response) =>
@@ -34,11 +34,11 @@ export function TransactionsTable() {
 				</thead>
 				<tbody>
 					{transactions.map((transaction) => (
-						<tr>
-							<td>Desenvolvimento de website</td>
-							<td className="deposit">R$12.000</td>
-							<td>Desenvolvimento</td>
-							<td>20/02/2021</td>
+						<tr key={transaction.id}>
+							<td>{transaction.title}</td>
+							<td className={transaction.type}>{transaction.amount}</td>
+							<td>{transaction.category}</td>
+							<td>{transaction.createAt}</td>
 						</tr>
 					))}
 				</tbody>
