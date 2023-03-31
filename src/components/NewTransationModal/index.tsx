@@ -26,6 +26,9 @@ export function NewTransactionModal({
 	async function handleCreateNewTransctionModal(event: FormEvent) {
 		event.preventDefault();
 		await createTransaction({ title, amount, category, type });
+
+		resetModalInputs();
+
 		onRequestClose();
 	}
 
@@ -95,4 +98,11 @@ export function NewTransactionModal({
 			</Container>
 		</ReactModal>
 	);
+
+	function resetModalInputs() {
+		setTitle("");
+		setAmount(0);
+		setCategory("");
+		setType("deposit");
+	}
 }
