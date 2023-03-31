@@ -25,6 +25,7 @@ export function NewTransactionModal({
 
 	async function handleCreateNewTransctionModal(event: FormEvent) {
 		event.preventDefault();
+		
 		await createTransaction({ title, amount, category, type });
 
 		resetModalInputs();

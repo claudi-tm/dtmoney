@@ -7,7 +7,28 @@ import { useContext } from "react";
 
 export function Summary() {
 	const { transactions } = useContext(TransactionsContext);
-	// 	console.log(transactions);
+
+	const total_deposists = transactions.reduce((acc, transaction) => {
+		if (transaction.type === "deposit") return acc + transaction.amount;
+		return acc;
+	}, 0);
+	
+
+	const summary = transactions.reduce((acc, transaction) => {
+		if (transaction.type === "deposit") {
+			acc.deposits += transaction.amount;
+			acc.total += transaction.amount
+		} else {
+			acc.withdraw += transaction.amount;
+			acc.total -= transaction.amount
+		}
+
+		return acc;
+	}, {
+		deposits: 0,
+		withdraw: 0,
+		total: 0,
+	})
 
 	return (
 		<Container>
@@ -17,7 +38,7 @@ export function Summary() {
 
 					<img src={income_img} alt="" />
 				</header>
-				<strong>R$1000,00</strong>
+				<strong>R${total_deposists}</strong>
 			</div>
 			<div>
 				<header>
@@ -25,7 +46,7 @@ export function Summary() {
 
 					<img src={outcome_img} alt="" />
 				</header>
-				<strong>R$1000,00</strong>
+				<strong>R${summary.withdraw}</strong>
 			</div>
 			<div className="highlight-background">
 				<header>
@@ -33,7 +54,7 @@ export function Summary() {
 
 					<img src={total_img} alt="" />
 				</header>
-				<strong>R$1000,00</strong>
+				<strong>R${summary.total}</strong>
 			</div>
 		</Container>
 	);
