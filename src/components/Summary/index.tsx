@@ -5,7 +5,7 @@ import outcome_img from "../../assets/outcome.svg";
 import { useTransactions } from "../../hooks/useTransactions";
 
 export function Summary() {
-	const { transactions } = useTransactions()
+	const { transactions } = useTransactions();
 
 	const summary = transactions.reduce(
 		(acc, transaction) => {
